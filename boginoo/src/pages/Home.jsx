@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 export const instance = axios.create({
@@ -38,7 +39,9 @@ const Home = () => {
     <div className="home">
       <header>
         <span className="herhen">Хэрхэн ажилладаг вэ?</span>
-        <button className="boginooButtonMini">Нэвтрэх</button>
+        <Link to={"/login"}>
+          <button className="boginooButtonMini">Нэвтрэх</button>
+        </Link>
       </header>
 
       <main>

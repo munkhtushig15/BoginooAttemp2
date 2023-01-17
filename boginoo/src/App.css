@@ -40,6 +40,7 @@ footer {
     color: #02B589;
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
 }
 .boginooButtonMini {
     color: #FFFFFF;
@@ -49,6 +50,7 @@ footer {
     border: 0;
     border-radius: 20px;
     padding: 5px 25px;
+    cursor: pointer;
 }
 .boginooInput {
     font-size: 20px;
@@ -99,4 +101,55 @@ footer {
 .gapMas {
     display: flex;
     gap: 2em;
+}
+
+/* Login style */
+
+.login {
+    width: 100vw;   
+    height: 100vh;
+}
+.loginMainContainer {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+.loginMainContainer h2 {
+    color: #02B589;
+}
+.loginInps {
+    width: 100%;
+    display: flex;
+    flex-direction: column;   
+}
+.boginooLabel {
+    font-size: 14px;
+    transform: translateX(15px) translateY(-5px);
+}
+.boginooInputLogin {
+    font-size: 20px;
+    border: 0;
+    border-radius: 20px;
+    padding: 5px 25px;
+    outline: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.checkBoxContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.boginooButton {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #02B589;
+    border: 0;
+    border-radius: 20px;
+    padding: 5px 25px;
+    width: 100%;
+    cursor: pointer;
 }
