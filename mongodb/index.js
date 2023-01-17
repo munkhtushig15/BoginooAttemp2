@@ -14,7 +14,7 @@ const token = jwt.sign(
     age: 123,
     expiresIn: "1d",
   },
-  process.env.JWT_secret || "default"
+  "secret"
 );
 
 const userMiddleWare = (req, res, next) => {
