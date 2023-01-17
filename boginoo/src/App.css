@@ -2,3 +2,101 @@
     margin: 0;
     padding: 0;
 }
+
+/* Home style */
+
+.home {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    width: 90%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2em;
+}
+main {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+footer {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.herhen {
+    color: #02B589;
+    font-size: 20px;
+    font-weight: bold;
+}
+.boginooButtonMini {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #02B589;
+    border: 0;
+    border-radius: 20px;
+    padding: 5px 25px;
+}
+.boginooInput {
+    font-size: 20px;
+    border: 0;
+    border-radius: 20px;
+    padding: 5px 25px;
+    outline: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 15em;
+}
+::placeholder {
+    color: #CCCCCC;
+    font-size: 18px;
+}
+.gapMaster {
+    display: flex;
+    gap: 2em;
+}
+.creditBlack {
+    font-size: 16px;
+    font-weight: 500;
+}
+.creditGray {
+    font-size: 14px;
+    color: #CCCCCC;
+}
+.shortenedLinkOne {
+    display: none;
+}
+.shortenedLinkTwo {
+    width: 31em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+.originalLink {
+    color: #C0C0C0;
+
+}
+.shortenedLink {
+    color: #C0C0C0;
+}
+.copyThat {
+    color: #02B589;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.gapMas {
+    display: flex;
+    gap: 2em;
+}
