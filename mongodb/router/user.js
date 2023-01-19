@@ -29,6 +29,7 @@ const userRouter = express.Router();
 // };
 
 userRouter.route("/").get(getAllUsers).post(createUser);
-userRouter.route("/:username").get(getUser).delete(deleteUser).put(updateUser);
+userRouter.route("/login").get(getUser);  
+userRouter.route("/:username").delete(deleteUser).put(updateUser);
 
 export default userRouter;

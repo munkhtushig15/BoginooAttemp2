@@ -1,10 +1,28 @@
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import { instance } from "./Home";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
-
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const Login = async () => {
+    try {
+      const res = await instance.get("/users/login", {
+        password: password,
+        email: email,
+      });
+      console.log(res);
+      toast.success("successfully logged in");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div className="login">
+      <ToastContainer />
       <header>
         <span className="herhen">Хэрхэн ажилладаг вэ?</span>
       </header>
@@ -23,6 +41,7 @@ const Login = () => {
               placeholder="name@mail.domain"
               type="text"
               className="boginooInputLogin"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="loginInps">
@@ -33,6 +52,7 @@ const Login = () => {
               placeholder="••••••••••"
               type="password"
               className="boginooInputLogin"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="checkBoxContainer">
@@ -42,7 +62,9 @@ const Login = () => {
             </div>
             <span className="copyThat">Нууц үгээ мартсан</span>
           </div>
-          <button className="boginooButton">Нэвтрэх</button>
+          <button onClick={Login} className="boginooButton">
+            Нэвтрэх
+          </button>
           <Link to={"/signup"}>
             <span className="copyThat">Шинэ хэрэглэгч бол энд дарна уу?</span>
           </Link>

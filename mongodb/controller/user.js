@@ -17,12 +17,21 @@ export const getAllUsers = async (req, res) => {
 
 export const getUser = async (req, res) => {
   try {
-    const username = req.params.username;
-    const user = await User.findOne({ username: username });
-    res.status(200).send({
-      success: true,
-      data: user,
-    });
+    const { email, password } = req.body;
+    const user = await User.findOne({email});
+    if (user) {
+      if (user.password !== password) {
+        throw new Error("email or password is incorrect");
+      } else {
+        res.status(200).send({
+          data: user,
+        });
+      }
+    } else {
+      res.status(404).send({
+        data: "Tiim user bhgu bn",
+      });
+    }
   } catch (error) {
     res.status(400).send({
       success: false,

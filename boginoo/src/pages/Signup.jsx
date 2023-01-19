@@ -1,9 +1,30 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
+import { instance } from "./Home";
 
 const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repassword, setRepassword] = useState("");
+
+  const SignUp = async () => {
+    try {
+      await instance.post("/users", {
+        password: password,
+        email: email,
+        repassword: repassword,
+      });
+      toast.success("Successfully signed up");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   return (
     <div className="login">
+      <ToastContainer />
       <header>
         <span className="herhen">Хэрхэн ажилладаг вэ?</span>
       </header>
@@ -22,6 +43,7 @@ const Signup = () => {
               placeholder="name@mail.domain"
               type="text"
               className="boginooInputLogin"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="loginInps">
@@ -32,6 +54,7 @@ const Signup = () => {
               placeholder="••••••••••"
               type="password"
               className="boginooInputLogin"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="loginInps">
@@ -42,9 +65,12 @@ const Signup = () => {
               placeholder="••••••••••"
               type="password"
               className="boginooInputLogin"
+              onChange={(e) => setRepassword(e.target.value)}
             />
           </div>
-          <button className="boginooButton">Бүртгүүлэх</button>
+          <button onClick={SignUp} className="boginooButton">
+            Бүртгүүлэх
+          </button>
         </div>
       </main>
 
