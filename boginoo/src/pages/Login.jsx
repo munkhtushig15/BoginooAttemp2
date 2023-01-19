@@ -9,11 +9,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const Login = async () => {
     try {
-      const res = await instance.get("/users/login", {
+      const res = await instance.post("/users/login", {
         password: password,
         email: email,
       });
       console.log(res);
+      window.location.replace(`users/${res.data.data.email}`);
       toast.success("successfully logged in");
     } catch (error) {
       toast.error(error.message);

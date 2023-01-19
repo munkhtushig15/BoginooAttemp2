@@ -17,6 +17,7 @@ const Signup = () => {
         email: email,
         repassword: repassword,
       });
+      window.location.replace("/login")
       toast.success("Successfully signed up");
     } catch (error) {
       toast.error(error.message);

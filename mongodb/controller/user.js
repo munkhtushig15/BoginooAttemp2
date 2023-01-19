@@ -1,5 +1,15 @@
 import User from "../model/User.js";
 
+export const user = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const user = await User.findOne({ email: email });
+    res.status(200).send({ data: user });
+  } catch (error) {
+    res.status(404).send({ data: error.message });
+  }
+};
+
 export const getAllUsers = async (req, res) => {
   try {
     const users = await User.find({});
@@ -18,7 +28,7 @@ export const getAllUsers = async (req, res) => {
 export const getUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({email});
+    const user = await User.findOne({ email });
     if (user) {
       if (user.password !== password) {
         throw new Error("email or password is incorrect");
@@ -57,8 +67,8 @@ export const createUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    const username = req.params.username;
-    const user = await User.findOneAndDelete({ username: username });
+    const { email } = req.params;
+    await User.findOneAndDelete({ email: email });
     res.status(200).send({
       success: true,
       data: `Successfully deleted`,
@@ -73,8 +83,8 @@ export const deleteUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    const username = req.params.username;
-    const user = await User.findOneAndUpdate({ username: username }, req.body);
+    const { email } = req.params;
+    const user = await User.findOneAndUpdate({ email: email }, req.body);
     res.status(200).send({
       success: true,
       data: user,

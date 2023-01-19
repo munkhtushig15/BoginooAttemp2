@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  user,
   getAllUsers,
   getUser,
   createUser,
@@ -29,7 +30,7 @@ const userRouter = express.Router();
 // };
 
 userRouter.route("/").get(getAllUsers).post(createUser);
-userRouter.route("/login").get(getUser);  
-userRouter.route("/:username").delete(deleteUser).put(updateUser);
+userRouter.route("/login").post(getUser);
+userRouter.route("/:email").get(user).delete(deleteUser).put(updateUser);
 
 export default userRouter;
