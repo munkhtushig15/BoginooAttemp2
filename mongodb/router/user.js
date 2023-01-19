@@ -8,7 +8,7 @@ import {
   updateUser,
 } from "../controller/user.js";
 
-import { checkTokenMiddleware } from "../middleware/middleware.js";
+import { checkTokenMiddleware } from "../controller/middleware.js";
 
 const userRouter = express.Router();
 

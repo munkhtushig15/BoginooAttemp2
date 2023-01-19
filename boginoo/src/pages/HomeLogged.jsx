@@ -12,6 +12,7 @@ const HomeLogged = () => {
   const params = useParams();
   const getUser = async () => {
     const res = await instance.get(`/users/${params.email}`);
+    
     setEmail(res.data.data.email);
   };
   const logoInit = () => {
@@ -25,6 +26,7 @@ const HomeLogged = () => {
   const shorten = async () => {
     const res = await instance.post("/links", {
       url: url,
+      token: JSON.parse(localStorage.getItem("token")),
     });
     setShortUrl(res.data.data.shortUrl);
     if (init === true) {
@@ -44,6 +46,9 @@ const HomeLogged = () => {
         <span className="herhen">Хэрхэн ажилладаг вэ?</span>
         <Link to="history">
           <button className="boginooButtonMini">{email}</button>
+        </Link>
+        <Link to="/">
+          <button className="boginooButtonMini">Log Out</button>
         </Link>
       </header>
 

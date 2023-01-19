@@ -5,9 +5,9 @@ export const checkTokenMiddleware = (req, res, next) => {
   jwt.verify(token, "secret", (err, result) => {
     if (err) {
       res.send(err);
+    } else {
+      next();
+      return result;
     }
-    console.log(result);
-    return result;
   });
-  next();
 };

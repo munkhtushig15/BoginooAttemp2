@@ -1,5 +1,6 @@
 import User from "../model/User.js";
 import jwt from "jsonwebtoken";
+
 export const user = async (req, res) => {
   try {
     const { email } = req.params;
