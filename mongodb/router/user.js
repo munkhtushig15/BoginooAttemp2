@@ -8,6 +8,8 @@ import {
   updateUser,
 } from "../controller/user.js";
 
+import { checkTokenMiddleware } from "../middleware/middleware.js";
+
 const userRouter = express.Router();
 
 // const userMiddleWare = (req, res, next) => {
@@ -29,7 +31,8 @@ const userRouter = express.Router();
 //   next();
 // };
 
-userRouter.route("/").get(getAllUsers).post(createUser);
+userRouter.route("/").post(createUser);
+userRouter.get("/", checkTokenMiddleware, getAllUsers);
 userRouter.route("/login").post(getUser);
 userRouter.route("/:email").get(user).delete(deleteUser).put(updateUser);
 

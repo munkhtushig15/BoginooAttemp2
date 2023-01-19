@@ -1,5 +1,5 @@
 import User from "../model/User.js";
-
+import jwt from "jsonwebtoken";
 export const user = async (req, res) => {
   try {
     const { email } = req.params;
@@ -27,6 +27,16 @@ export const getAllUsers = async (req, res) => {
 
 export const getUser = async (req, res) => {
   try {
+    const token = jwt.sign(
+      {
+        email: req.body.email,
+        password: req.body.password,
+      },
+      "secret",
+      {
+        expiresIn: "1d",
+      }
+    );
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (user) {
@@ -34,6 +44,7 @@ export const getUser = async (req, res) => {
         throw new Error("email or password is incorrect");
       } else {
         res.status(200).send({
+          token: token,
           data: user,
         });
       }

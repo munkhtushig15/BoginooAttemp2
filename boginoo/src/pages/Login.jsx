@@ -15,6 +15,7 @@ const Login = () => {
       });
       console.log(res);
       window.location.replace(`users/${res.data.data.email}`);
+      window.localStorage.setItem("token", JSON.stringify(res.data.token));
       toast.success("successfully logged in");
     } catch (error) {
       toast.error(error.message);

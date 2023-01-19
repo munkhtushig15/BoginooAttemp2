@@ -1,10 +1,13 @@
 import jwt from "jsonwebtoken";
 
 export const checkTokenMiddleware = (req, res, next) => {
-    jwt.verify(token, "secret", (err, res) => {
-        if (err) return err;
-        console.log(res);
-        return res;
-        next();
-    })
+  const { token } = req.body;
+  jwt.verify(token, "secret", (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+    console.log(result);
+    return result;
+  });
+  next();
 };
