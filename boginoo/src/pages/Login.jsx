@@ -4,6 +4,7 @@ import { instance } from "./Home";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,7 +63,9 @@ const Login = () => {
               <input type="checkbox" name="" id="" />
               <span className="copyThat">Намайг сана</span>
             </div>
-            <span className="copyThat">Нууц үгээ мартсан</span>
+            <Link to={`/forgot`}>
+              <span className="copyThat">Нууц үгээ мартсан</span>
+            </Link>
           </div>
           <button onClick={Login} className="boginooButton">
             Нэвтрэх
