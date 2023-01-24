@@ -14,7 +14,6 @@ const History = () => {
   const params = useParams();
   const getUser = async () => {
     const res = await instance.get(`/users/${params.email}`);
-
     setEmail(res.data.data.email);
   };
   const logoInit = () => {

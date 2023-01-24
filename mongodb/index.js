@@ -2,20 +2,10 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
 import userRouter from "./router/user.js";
 import linkRouter from "./router/link.js";
 
 const app = express();
-
-const token = jwt.sign(
-  {
-    email: "munkh@gmail.com",
-    age: 123,
-    expiresIn: "1d",
-  },
-  "secret"
-);
 
 const userMiddleWare = (req, res, next) => {
   console.log("response: method = ", req.method);

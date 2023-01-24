@@ -12,25 +12,6 @@ import { checkTokenMiddleware } from "../controller/middleware.js";
 
 const userRouter = express.Router();
 
-// const userMiddleWare = (req, res, next) => {
-//   console.log("response: method = ", req.method);
-//   next();
-// };
-
-// const createTokenMiddleware = (req, res, next) => {
-//   console.log(token);
-//   next();
-// };
-
-// const checkTokenMiddleware = (req, res, next) => {
-//   jwt.verify(token, "secret", (err, res) => {
-//     if (err) return err;
-//     console.log(res);
-//     return res;
-//   });
-//   next();
-// };
-
 userRouter.route("/").post(createUser);
 userRouter.get("/", checkTokenMiddleware, getAllUsers);
 userRouter.route("/login").post(getUser);

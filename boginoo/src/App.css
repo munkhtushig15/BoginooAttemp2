@@ -171,14 +171,15 @@ footer {
 }
 .given {
     width: 50%;
-    overflow: auto;
+    overflow-y: scroll;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 .shortUrl {
     width: 48%;
-    overflow: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
