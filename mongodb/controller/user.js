@@ -40,10 +40,13 @@ export const getUser = async (req, res) => {
     );
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    const isMatch = await user.comparePassword(password);
+    console.log(isMatch);
+    if (!isMatch) {
+      res.send("Fuck");
+    }
     if (user) {
-      if (user.password !== password) {
-        throw new Error("email or password is incorrect");
-      } else {
+      {
         res.status(200).send({
           token: token,
           data: user,
