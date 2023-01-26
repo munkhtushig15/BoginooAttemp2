@@ -23,7 +23,8 @@ const Signup = () => {
       window.location.replace("/login");
       toast.success("Successfully signed up");
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response.data.data);
+      console.log(error.response);
     }
     setIsLoading(false);
   };
@@ -84,7 +85,7 @@ const Signup = () => {
           </main>
 
           <footer>
-            <p className="creditBlack">Made with ♥️ by Nest Academy</p>
+            <p className="creditGreen">Made with ♥️ by Nest Academy</p>
             <p className="creditGray">©boginoo.io 2020</p>
           </footer>
         </div>

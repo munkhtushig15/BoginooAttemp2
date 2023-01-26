@@ -12,9 +12,11 @@ const History = () => {
   const [shortUrl, setShortUrl] = useState("");
   const [email, setEmail] = useState("");
   const params = useParams();
+  const [id, setId] = useState("");
   const getUser = async () => {
     const res = await instance.get(`/users/${params.email}`);
     setEmail(res.data.data.email);
+    setId(res.data.data.id);
   };
   const logoInit = () => {
     if (init === false) {
@@ -27,8 +29,10 @@ const History = () => {
   const shorten = async () => {
     const res = await instance.post("/links", {
       url: url,
+      user_id: id,
       token: JSON.parse(localStorage.getItem("token")),
     });
+    console.log(res)
     setShortUrl(res.data.data.shortUrl);
     if (init === true) {
       setInit(false);
@@ -54,8 +58,9 @@ const History = () => {
     <div className="home">
       <header>
         <span className="herhen">Хэрхэн ажилладаг вэ?</span>
-        <Link to={`/users/${params.email}`}>
-          <button className="boginooButtonMini">{email}</button>
+        <Link className="userContainer" to={`/users/${params.email}`}>
+          <span className="user">{email}</span>
+          <img src={require("../images/icon-down.png")} alt="" />
         </Link>
         <Link to="/">
           <button className="boginooButtonMini">Log Out</button>
@@ -107,7 +112,7 @@ const History = () => {
       </main>
 
       <footer>
-        <p className="creditBlack">Made with ♥️ by Nest Academy</p>
+        <p className="creditGreen">Made with ♥️ by Nest Academy</p>
         <p className="creditGray">©boginoo.io 2020</p>
       </footer>
     </div>

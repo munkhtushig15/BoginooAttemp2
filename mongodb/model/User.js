@@ -42,6 +42,11 @@ UserSchema.methods.jwtGenerate = async function () {
     expiresIn: "300d",
   });
 };
+
+UserSchema.path("email").validate((email) => {
+  return email.toLowerCase().match(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/);
+});
+
 const User = mongoose.model("User", UserSchema);
 
 export default User;

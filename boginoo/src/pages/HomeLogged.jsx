@@ -58,8 +58,9 @@ const HomeLogged = () => {
         <div className="home">
           <header>
             <span className="herhen">Хэрхэн ажилладаг вэ?</span>
-            <Link to="history">
-              <button className="boginooButtonMini">{email}</button>
+            <Link className="userContainer" to="history">
+              <span className="user">{email}</span>
+              <img src={require("../images/icon-down.png")} alt="" />
             </Link>
             <Link to="/">
               <button className="boginooButtonMini">Log Out</button>
@@ -104,7 +105,7 @@ const HomeLogged = () => {
           </main>
 
           <footer>
-            <p className="creditBlack">Made with ♥️ by Nest Academy</p>
+            <p className="creditGreen">Made with ♥️ by Nest Academy</p>
             <p className="creditGray">©boginoo.io 2020</p>
           </footer>
         </div>
