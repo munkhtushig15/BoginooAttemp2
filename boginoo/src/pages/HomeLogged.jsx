@@ -7,6 +7,7 @@ import Loading from "../components/Loading";
 const HomeLogged = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [init, setInit] = useState(false);
+  const [id, setId] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
@@ -17,6 +18,8 @@ const HomeLogged = () => {
     const res = await instance.get(`/users/${params.email}`);
     setEmail(res.data.data.email);
     setIsLoading(false);
+    console.log(res);
+    setId(res.data.data.id);
   };
   const logoInit = () => {
     if (init === false) {
@@ -30,8 +33,10 @@ const HomeLogged = () => {
     setIsLoading(true);
     const res = await instance.post("/links", {
       url: url,
+      user_id: id,
       token: JSON.parse(localStorage.getItem("token")),
     });
+    console.log(res);
     setShortUrl(res.data.data.shortUrl);
     if (init === true) {
       setInit(false);

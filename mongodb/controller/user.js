@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 export const user = async (req, res) => {
   try {
     const { email } = req.params;
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: email }).populate("Link");
     res.status(200).send({ data: user });
   } catch (error) {
     res.status(404).send({ data: error.message });
@@ -13,7 +13,7 @@ export const user = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({});
+    const users = await User.find({}).populate("Link");
     res.status(200).send({
       success: true,
       data: users,
@@ -35,11 +35,11 @@ export const getUser = async (req, res) => {
       },
       "secret",
       {
-        expiresIn: "1d",
+        expiresIn: "100d",
       }
     );
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate();
     const isMatch = await user.comparePassword(password);
     console.log(isMatch);
     if (!isMatch) {

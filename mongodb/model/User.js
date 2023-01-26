@@ -1,16 +1,25 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 
-const UserSchema = new mongoose.Schema({
-  password: {
-    type: String,
-    required: true,
+const UserSchema = new mongoose.Schema(
+  {
+    password: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+  { toJSON: { virtuals: true }, toObject: { virtuals: true } }
+);
+
+UserSchema.virtual("Link", {
+  ref: "Link",
+  localField: "_id",
+  foreignField: "user_id",
 });
 
 UserSchema.pre("save", async function (next) {
@@ -30,7 +39,7 @@ UserSchema.methods.comparePassword = async function (password) {
 
 UserSchema.methods.jwtGenerate = async function () {
   return jwt.sign({ id: this._id, username: this.username }, process.env.JWT, {
-    expiresIn: "1d",
+    expiresIn: "300d",
   });
 };
 const User = mongoose.model("User", UserSchema);

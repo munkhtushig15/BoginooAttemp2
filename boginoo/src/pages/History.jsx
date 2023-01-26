@@ -38,14 +38,18 @@ const History = () => {
     }
   };
   const getHistory = async () => {
-    const res = await instance.get("/links");
-    setHistory(res.data.data);
+    const res = await instance.get(`/users/${params.email}`);
+    setHistory(
+      res.data.data.Link.map((el) => {
+        return el;
+      })
+    );
   };
 
   useEffect(() => {
     getUser();
     getHistory();
-  }, [history]);
+  }, []);
   return (
     <div className="home">
       <header>

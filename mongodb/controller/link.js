@@ -1,9 +1,8 @@
-import { rmSync } from "fs";
 import Link from "../model/Link.js";
 
 export const getAllLinks = async (req, res) => {
   try {
-    const links = await Link.find({});
+    const links = await Link.find({}).populate();
     res.status(200).send({
       success: true,
       data: links,
