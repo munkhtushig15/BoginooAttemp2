@@ -102,6 +102,11 @@ footer {
     display: flex;
     gap: 2em;
 }
+.creditGreen {
+    color: #02B589;
+    font-size: 16px;
+    font-weight: 500;
+}
 
 /* Login style */
 
@@ -152,6 +157,15 @@ footer {
     padding: 5px 25px;
     width: 100%;
     cursor: pointer;
+}
+.userContainer {
+    text-decoration: none;
+}
+.user {
+    font-size: 20px;
+    color: #000000;
+    font-weight: bold;
+    padding-right: 5px;
 }
 
 /* history style */

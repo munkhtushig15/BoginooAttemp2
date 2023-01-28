@@ -30,7 +30,7 @@ const Forgot = () => {
       </main>
 
       <footer>
-        <p className="creditBlack">Made with ♥️ by Nest Academy</p>
+        <p className="creditGreen">Made with ♥️ by Nest Academy</p>
         <p className="creditGray">©boginoo.io 2020</p>
       </footer>
     </div>
