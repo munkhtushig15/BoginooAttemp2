@@ -38,7 +38,7 @@ const History = () => {
     }
   };
   const getHistory = async () => {
-    const res = await instance.get(`/users/${params.email}`);
+    const res = await instance.get(`/users/${params.email}`)
     setHistory(
       res.data.data.Link.map((el) => {
         return el;

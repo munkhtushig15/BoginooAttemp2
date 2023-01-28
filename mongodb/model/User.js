@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 const UserSchema = new mongoose.Schema(
@@ -12,6 +12,12 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    role: {
+      type: String,
+      enum: ["normal", "admin"],
+      default: "normal",
+      required: true,
+    }
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
