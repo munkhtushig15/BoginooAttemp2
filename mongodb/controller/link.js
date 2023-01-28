@@ -33,20 +33,11 @@ export const getLink = async (req, res) => {
 
 export const deleteLink = async (req, res) => {
   try {
-    const { role } = req.body;
-    const id = req.params.id;
-    // const shortUrl = req.params.shortUrl;
-    // await Link.findOneAndDelete({ shortUrl: shortUrl });
-    if (role === "admin") {
-      await Link.findOneAndDelete({ _id: id });
-    } else {
-      res.send(404).send({
-        data: 'admin bish bn',
-      });
-    }
+    const {id} = req.params;
+    const user = await Link.findOneAndDelete({ _id: id });
     res.status(200).send({
+      data: user,
       success: true,
-      data: `Successfully deleted`,
     });
   } catch (err) {
     res.status(400).send({
