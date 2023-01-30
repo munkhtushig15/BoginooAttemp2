@@ -32,7 +32,7 @@ const History = () => {
       user_id: id,
       token: JSON.parse(localStorage.getItem("token")),
     });
-    console.log(res)
+    console.log(res);
     setShortUrl(res.data.data.shortUrl);
     if (init === true) {
       setInit(false);
@@ -42,12 +42,14 @@ const History = () => {
     }
   };
   const getHistory = async () => {
-    const res = await instance.get(`/users/${params.email}`)
-    setHistory(
-      res.data.data.Link.map((el) => {
-        return el;
-      })
-    );
+    const res = await instance.get(`/users/${params.email}`);
+    console.log(res);
+    if (res)
+      setHistory(
+        res.data.data.Link.map((el) => {
+          return el;
+        })
+      );
   };
 
   useEffect(() => {

@@ -11,6 +11,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
+  const [role, setRole] = useState("");
 
   const SignUp = async () => {
     setIsLoading(true);
@@ -19,12 +20,12 @@ const Signup = () => {
         password: password,
         email: email,
         repassword: repassword,
+        role: role,
       });
       window.location.replace("/login");
       toast.success("Successfully signed up");
     } catch (error) {
       toast.error(error.response.data.data);
-      console.log(error.response);
     }
     setIsLoading(false);
   };
@@ -76,6 +77,17 @@ const Signup = () => {
                   type="password"
                   className="boginooInputLogin"
                   onChange={(e) => setRepassword(e.target.value)}
+                />
+              </div>
+              <div className="loginInps">
+                <label className="boginooLabel" htmlFor="">
+                  Role?
+                </label>
+                <input
+                  placeholder="'normal' or 'admin'"
+                  type="string"
+                  className="boginooInputLogin"
+                  onChange={(e) => setRole(e.target.value)}
                 />
               </div>
               <button onClick={SignUp} className="boginooButton">
