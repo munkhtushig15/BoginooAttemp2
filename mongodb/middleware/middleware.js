@@ -26,9 +26,8 @@ export const checkTokenMiddleware = (req, res, next) => {
 
 export const checkAdmin = (req, res, next) => {
   const { role } = req.body;
-
   if (role !== "admin") {
-    res.status(403).send("ee");
+    res.status(403).send("error");
   } else {
     next();
   }

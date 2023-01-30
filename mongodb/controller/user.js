@@ -43,7 +43,7 @@ export const getUser = async (req, res) => {
     const isMatch = await user.comparePassword(password);
     console.log(isMatch);
     if (!isMatch) {
-      res.send("Fuck");
+      res.send('error');
     }
     if (user) {
       {

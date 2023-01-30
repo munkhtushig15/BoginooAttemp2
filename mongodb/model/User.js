@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema(
       enum: ["normal", "admin"],
       default: "normal",
       required: true,
-    }
+    },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

@@ -34,7 +34,7 @@ export const getLink = async (req, res) => {
 export const deleteLink = async (req, res) => {
   try {
     const {id} = req.params;
-    const user = await Link.findOneAndDelete({ _id: id });
+    const user = await Link.findByIdAndDelete({ _id: id });
     res.status(200).send({
       data: user,
       success: true,
@@ -42,7 +42,7 @@ export const deleteLink = async (req, res) => {
   } catch (err) {
     res.status(400).send({
       success: false,
-      data: err.message,
+      data: err,
     });
   }
 };

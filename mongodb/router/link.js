@@ -13,6 +13,6 @@ const linkRouter = express.Router();
 linkRouter.route("/").get(getAllLinks);
 linkRouter.post("/", checkTokenMiddleware, createLink);
 linkRouter.route("/:shortUrl").get(getLink);
-linkRouter.delete("/delete/:id", checkAdmin, deleteLink);
+linkRouter.delete("/:id", checkAdmin, deleteLink);
 
 export default linkRouter;
