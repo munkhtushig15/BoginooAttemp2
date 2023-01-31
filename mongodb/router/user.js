@@ -11,6 +11,7 @@ import {
 import {  checkTokenMiddleware } from "../middleware/middleware.js";
 
 const userRouter = express.Router();
+
 // const MovieTheater = (req,res) => {
 //   res.status(200).json({query: req.query, params: req.params});
 // }

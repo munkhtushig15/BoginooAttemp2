@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import User from "../model/User.js";
+import Link from "../model/Link.js";
 
 export const checkTokenMiddleware = (req, res, next) => {
   const { token } = req.body;
@@ -12,25 +14,13 @@ export const checkTokenMiddleware = (req, res, next) => {
   });
 };
 
-// export const deleteAdminLink = (...allowedRoles) => {
-//   return (req, res, next) => {
-//     if (!req?.role) return res.sendStatus(401);
-//     const rolesArray = [...allowedRoles];
-//     const result = req.roles
-//       .map((role) => rolesArray.includes(role))
-//       .find((val) => val === true);
-//     if (!result) return res.sendStatus(401);
-//     next();
-//   };
-// };
-
-export const checkAdmin = (req, res, next) => {
-  console.log(req.body);
-  const { role } = req.body;
-  console.log(role, "this");
-  if (role !== "admin") {
-    res.status(400).send("error");
-  } else {
+export const checkAdmin = async (req, res, next) => {
+  const { id } = req.params;
+  const link = await Link.findById(id);
+  const user = await User.findById(link.user_id);
+  if (user.role === "admin") {
     next();
+  } else {
+    console.log("not admin");
   }
 };

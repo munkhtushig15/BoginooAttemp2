@@ -10,7 +10,7 @@ import { checkTokenMiddleware, checkAdmin } from "../middleware/middleware.js";
 
 const linkRouter = express.Router();
 
-linkRouter.route("/").get(getAllLinks);
+linkRouter.get("/" ,getAllLinks);
 linkRouter.post("/", checkTokenMiddleware, createLink);
 linkRouter.route("/:shortUrl").get(getLink);
 linkRouter.delete("/:id", checkAdmin, deleteLink);

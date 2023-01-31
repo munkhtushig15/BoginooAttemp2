@@ -52,11 +52,10 @@ const History = () => {
         })
       );
   };
-
   useEffect(() => {
     getUser();
     getHistory();
-  }, []);
+  }, [history]);
   return (
     <div className="home">
       <header>
