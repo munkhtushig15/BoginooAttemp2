@@ -14,7 +14,7 @@ export const checkTokenMiddleware = (req, res, next) => {
 
 // export const deleteAdminLink = (...allowedRoles) => {
 //   return (req, res, next) => {
-//     if (!req?.roles) return res.sendStatus(401);
+//     if (!req?.role) return res.sendStatus(401);
 //     const rolesArray = [...allowedRoles];
 //     const result = req.roles
 //       .map((role) => rolesArray.includes(role))
@@ -25,9 +25,11 @@ export const checkTokenMiddleware = (req, res, next) => {
 // };
 
 export const checkAdmin = (req, res, next) => {
+  console.log(req.body);
   const { role } = req.body;
+  console.log(role, "this");
   if (role !== "admin") {
-    res.status(403).send("error");
+    res.status(400).send("error");
   } else {
     next();
   }

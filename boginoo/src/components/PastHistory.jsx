@@ -1,25 +1,20 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import "../App.css";
 import { instance } from "../pages/Home";
 
-const PastHistory = ({ past }) => {
-  const params = useParams();
-  const [admin, setAdmin] = useState("");
+const PastHistory = ({ past, user }) => {
   const deleteUrlFunction = async () => {
-    const res = await instance.delete(`/links/${past._id}`, {
-      role: admin,
-    });
-    console.log(res);
+    console.log(user.role);
+    if (user.role === "admin") {
+      const res = await instance.delete(`/links/${past._id}`, {
+        role: user.role,
+        _id: past._id
+      });
+      console.log(res);
+    } else {
+      console.log("fuck");
+    }
   };
-  const getHistory = async () => {
-    const res = await instance.get(`/users/${params.email}`);
-    console.log(res.data.data.role);
-    setAdmin(res.data.data.role);
-  };
-  useEffect(() => {
-    getHistory();
-  }, []);
+
   return (
     <>
       <div className="pastHistory">
@@ -31,7 +26,9 @@ const PastHistory = ({ past }) => {
           <p className="creditGray">Богино холбоос:</p>
           <p className="creditBlack">localhost:3000/{past.shortUrl}</p>
         </div>
-        <button onClick={deleteUrlFunction}>delete</button>
+        <button className="boginooDelete" onClick={deleteUrlFunction}>
+          delete
+        </button>
       </div>
       <hr />
     </>

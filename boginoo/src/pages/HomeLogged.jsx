@@ -18,7 +18,6 @@ const HomeLogged = () => {
     const res = await instance.get(`/users/${params.email}`);
     setEmail(res.data.data.email);
     setIsLoading(false);
-    console.log(res);
     setId(res.data.data.id);
   };
   const logoInit = () => {
@@ -36,7 +35,6 @@ const HomeLogged = () => {
       user_id: id,
       token: JSON.parse(localStorage.getItem("token")),
     });
-    console.log(res);
     setShortUrl(res.data.data.shortUrl);
     if (init === true) {
       setInit(false);
@@ -45,6 +43,10 @@ const HomeLogged = () => {
       setExpanded(true);
     }
     setIsLoading(false);
+  };
+
+  const copiedSite = () => {
+    window.location.replace(url);
   };
 
   useEffect(() => {
@@ -97,7 +99,9 @@ const HomeLogged = () => {
                   <p className="shortenedLink">Богино холбоос:</p>
                   <div className="gapMas">
                     <span>localhost:3000/{shortUrl}</span>
-                    <span className="copyThat">Хуулж авах</span>
+                    <span className="copyThat" onClick={copiedSite}>
+                      Хуулж авах
+                    </span>
                   </div>
                 </div>
               </div>

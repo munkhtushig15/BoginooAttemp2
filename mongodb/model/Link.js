@@ -9,16 +9,10 @@ const LinkSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  role: {
-    type: String,
-    enum: ["normal", "admin"],
-    default: "normal",
-    required: true,
-  },
 });
 
 LinkSchema.pre("save", function (next) {
-  this.shortUrl = nanoid(6);
+  this.shortUrl = nanoid(5);
   next();
 });
 

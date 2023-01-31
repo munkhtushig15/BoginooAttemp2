@@ -2,7 +2,9 @@ import Link from "../model/Link.js";
 
 export const getAllLinks = async (req, res) => {
   try {
-    const links = await Link.find({}).populate();
+    const Skip = req.query.skip || 1;
+    const limit = req.query.limit || 10;
+    const links = await Link.find({}).skip(Skip).limit(limit);
     res.status(200).send({
       success: true,
       data: links,
@@ -33,10 +35,11 @@ export const getLink = async (req, res) => {
 
 export const deleteLink = async (req, res) => {
   try {
-    const {id} = req.params;
-    const user = await Link.findByIdAndDelete({ _id: id });
+    const { id } = req.params;
+    console.log(id, "id");
+    const link = await Link.findByIdAndDelete({ _id: id });
     res.status(200).send({
-      data: user,
+      data: link,
       success: true,
     });
   } catch (err) {

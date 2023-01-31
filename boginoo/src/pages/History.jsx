@@ -11,10 +11,12 @@ const History = () => {
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
   const [email, setEmail] = useState("");
+  const [user, setUser] = useState("");
   const params = useParams();
   const [id, setId] = useState("");
   const getUser = async () => {
     const res = await instance.get(`/users/${params.email}`);
+    setUser(res.data.data);
     setEmail(res.data.data.email);
     setId(res.data.data.id);
   };
@@ -43,7 +45,6 @@ const History = () => {
   };
   const getHistory = async () => {
     const res = await instance.get(`/users/${params.email}`);
-    console.log(res);
     if (res)
       setHistory(
         res.data.data.Link.map((el) => {
@@ -108,7 +109,7 @@ const History = () => {
         <div className="history">
           {history &&
             history.map((past) => {
-              return <PastHistory key={past._id} past={past} />;
+              return <PastHistory key={past._id} past={past} user={user} />;
             })}
         </div>
       </main>

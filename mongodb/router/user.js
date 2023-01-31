@@ -8,9 +8,12 @@ import {
   updateUser,
 } from "../controller/user.js";
 
-import { checkTokenMiddleware } from "../middleware/middleware.js";
+import {  checkTokenMiddleware } from "../middleware/middleware.js";
 
 const userRouter = express.Router();
+// const MovieTheater = (req,res) => {
+//   res.status(200).json({query: req.query, params: req.params});
+// }
 
 userRouter.route("/").post(createUser);
 userRouter.get("/", checkTokenMiddleware, getAllUsers);
