@@ -1,14 +1,12 @@
 {
-    "enu": {
+    "env": {
         "browser": true,
         "commonjs": true,
         "es2021": true
     },
     "extends": ["prettier"],
     "perserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module",
-        "allowImportExportEverywhere": true
+        "ecmaVersion": "latest"
     },
     "rules": {
         "no-console": "off"
