@@ -13,7 +13,9 @@ export const user = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}).populate("Link");
+    const Skip = req.query.skip || 1;
+    const Limit = req.query.limit || 5;
+    const users = await User.find({}).populate("Link").skip(Skip).limit(Limit);
     res.status(200).send({
       success: true,
       data: users,

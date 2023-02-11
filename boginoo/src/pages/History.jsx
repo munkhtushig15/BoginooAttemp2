@@ -44,9 +44,24 @@ const History = () => {
         }
     };
     const getHistory = async () => {
-        const res = await instance.get(`/users/${params.email}`);
+        const res = await instance.get(`/links/?limit=3`);
         setHistory(
-            res.data.data.Link.map((el) => {
+            res.data.data.map((el) => {
+                console.log(el);
+                return el;
+            }),
+        );
+        // setHistory(
+        //     res.data.data.Link.map((el) => {
+        //         return el;
+        //     }),
+        // );
+    };
+    const getHistory2 = async () => {
+        const res = await instance.get(`/links/?limit=3&skip=3`);
+        setHistory(
+            res.data.data.map((el) => {
+                console.log(el);
                 return el;
             }),
         );
@@ -54,7 +69,7 @@ const History = () => {
     useEffect(() => {
         getUser();
         getHistory();
-    }, [history]);
+    }, []);
     return (
         <div className="home">
             <header>
@@ -109,6 +124,10 @@ const History = () => {
                         history.map((past) => {
                             return <PastHistory key={past._id} past={past} user={user} />;
                         })}
+                </div>
+                <div className="historyPagination">
+                    <button onClick={getHistory}>1</button>
+                    <button onClick={getHistory2}>2</button>
                 </div>
             </main>
 
